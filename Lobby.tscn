@@ -1,0 +1,17 @@
+[gd_scene format=2]
+
+[node name="Lobby" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+margin_left = 486.0
+margin_top = 222.0
+margin_right = 529.0
+margin_bottom = 236.0
+text = "LOBBY"
+
+[node name="RoomNumber" type="Label" parent="."]
+margin_left = 460.0
+margin_top = 280.0
+margin_right = 551.0
+margin_bottom = 294.0
+text = "Room number"
