@@ -15,4 +15,5 @@ func _ready():
 
 
 func _on_CreateRoom_pressed():
-	pass # Replace with function body.
+	var peer = NetworkedMultiplayerENet.new()
+	peer.create_server(8000, 4)
