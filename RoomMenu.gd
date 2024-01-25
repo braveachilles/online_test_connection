@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 
 # Declare member variables here. Examples:
@@ -17,3 +17,11 @@ func _ready():
 func _on_CreateRoom_pressed():
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(8000, 4)
+
+
+func _on_EnterRoom_pressed():
+	$PopupEnterCodeRoom.visible = true
+
+
+func _on_TextureButton_pressed():
+	$PopupEnterCodeRoom.visible = false
