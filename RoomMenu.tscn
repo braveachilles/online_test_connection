@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://RoomMenu.gd" type="Script" id=1]
-[ext_resource path="res://normal_corner.png" type="Texture" id=2]
 
 [node name="RoomMenu" type="Control"]
 anchor_right = 1.0
@@ -23,6 +22,7 @@ margin_bottom = 412.0
 text = "Enter room"
 
 [node name="PopupEnterCodeRoom" type="Panel" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 239.0
@@ -38,40 +38,44 @@ margin_top = 29.0
 margin_right = -40.0
 margin_bottom = -29.0
 
-[node name="TextureButton" type="TextureButton" parent="PopupEnterCodeRoom/VBoxContainer"]
-margin_left = 370.0
+[node name="TextureButton" type="Button" parent="PopupEnterCodeRoom/VBoxContainer"]
+margin_left = 446.0
+margin_top = 46.0
 margin_right = 466.0
-margin_bottom = 96.0
+margin_bottom = 66.0
 size_flags_horizontal = 10
 size_flags_vertical = 10
-texture_normal = ExtResource( 2 )
+text = "X"
 
 [node name="RoomCode" type="Label" parent="PopupEnterCodeRoom/VBoxContainer"]
-margin_top = 100.0
+margin_top = 70.0
 margin_right = 466.0
-margin_bottom = 131.0
+margin_bottom = 101.0
 text = "Room Code
 "
 
 [node name="TextEdit" type="TextEdit" parent="PopupEnterCodeRoom/VBoxContainer"]
-margin_top = 135.0
+margin_top = 105.0
 margin_right = 466.0
-margin_bottom = 165.0
+margin_bottom = 135.0
 rect_min_size = Vector2( 0, 30 )
 
 [node name="TextPopup" type="Label" parent="PopupEnterCodeRoom/VBoxContainer"]
-margin_top = 169.0
+margin_top = 139.0
 margin_right = 466.0
-margin_bottom = 200.0
+margin_bottom = 170.0
 text = "Please enter the room code.
 "
 
 [node name="Continue" type="Button" parent="PopupEnterCodeRoom/VBoxContainer"]
-margin_top = 204.0
+margin_top = 174.0
 margin_right = 466.0
-margin_bottom = 224.0
+margin_bottom = 194.0
 text = "Continue"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [connection signal="pressed" from="CreateRoom" to="." method="_on_CreateRoom_pressed"]
 [connection signal="pressed" from="EnterRoom" to="." method="_on_EnterRoom_pressed"]
 [connection signal="pressed" from="PopupEnterCodeRoom/VBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

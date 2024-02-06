@@ -14,6 +14,10 @@ config/name="online_test_connection"
 run/main_scene="res://RoomMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
