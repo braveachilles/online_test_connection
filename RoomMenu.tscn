@@ -78,3 +78,4 @@ text = "Continue"
 [connection signal="pressed" from="CreateRoom" to="." method="_on_CreateRoom_pressed"]
 [connection signal="pressed" from="EnterRoom" to="." method="_on_EnterRoom_pressed"]
 [connection signal="pressed" from="PopupEnterCodeRoom/VBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="PopupEnterCodeRoom/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
