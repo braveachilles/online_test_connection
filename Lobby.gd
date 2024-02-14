@@ -36,13 +36,13 @@ func codeEncryption():
 		united_segments_list.append(Global.dictionary_ip_block_1[int(str(ip_segment_1)[i])])
 	united_segments_list.append(getRandom())
 	for i in range (0, str(ip_segment_2).length()):
-		united_segments_list.append(Global.dictionary_ip_block_1[int(str(ip_segment_2)[i])])
+		united_segments_list.append(Global.dictionary_ip_block_2[int(str(ip_segment_2)[i])])
 	united_segments_list.append(getRandom())
 	for i in range (0, str(ip_segment_3).length()):
-		united_segments_list.append(Global.dictionary_ip_block_1[int(str(ip_segment_3)[i])])
+		united_segments_list.append(Global.dictionary_ip_block_3[int(str(ip_segment_3)[i])])
 	united_segments_list.append(getRandom())
 	for i in range (0, str(ip_segment_4).length()):
-		united_segments_list.append(Global.dictionary_ip_block_1[int(str(ip_segment_4)[i])])
+		united_segments_list.append(Global.dictionary_ip_block_4[int(str(ip_segment_4)[i])])
 		#segment_1_of_1 = dictionary_ip_block_1[int(str(ip_segment_1)[0])]
 	
 	#print("la ip es: " + ip)
@@ -53,6 +53,7 @@ func codeEncryption():
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	var ip = body.get_string_from_utf8()
+	print(ip)
 	ip_splited = ip.split(".")
 	codeEncryption()
 	
