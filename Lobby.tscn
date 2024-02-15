@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Lobby.gd" type="Script" id=1]
+[ext_resource path="res://ConnectionManager.gd" type="Script" id=2]
 
 [node name="Lobby" type="Control"]
 anchor_right = 1.0
@@ -95,6 +96,9 @@ margin_left = 717.0
 margin_top = 524.0
 margin_right = 903.0
 margin_bottom = 572.0
+
+[node name="ConnectionManager" type="Node2D" parent="."]
+script = ExtResource( 2 )
 
 [connection signal="pressed" from="SendMessage" to="." method="_on_SendMessage_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

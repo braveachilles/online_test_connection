@@ -13,10 +13,11 @@ func _ready():
 	player_list = $PlayerList
 	chat_list = $Chat
 	chat_message_enter = $ChatMessageEnter
-	var peer = NetworkedMultiplayerENet.new()
-	peer.create_server(8000, 4)
-	network_peer = peer
-	Global.player_list.append(peer)
+#	var peer = NetworkedMultiplayerENet.new()
+#	peer.create_server(8000, 4)
+#	network_peer = peer
+#	Global.player_list.append(peer)
+	$ConnectionManager.createServer()
 	var http = $HTTPRequest
 	http.request("https://api.ipify.org")
 	host_player = "Player 1 (Host)"
@@ -43,6 +44,7 @@ func codeEncryption():
 	united_segments_list.append(getRandom())
 	for i in range (0, str(ip_segment_4).length()):
 		united_segments_list.append(Global.dictionary_ip_block_4[int(str(ip_segment_4)[i])])
+
 		#segment_1_of_1 = dictionary_ip_block_1[int(str(ip_segment_1)[0])]
 	
 	#print("la ip es: " + ip)

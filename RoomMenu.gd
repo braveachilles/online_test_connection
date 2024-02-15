@@ -62,10 +62,10 @@ func codeDecryption(codeToDecrypt):
 	
 	#print(ip)
 	print("la ip es: " + ip)
-	
+	return ip
 
 func _on_Continue_pressed():
-	codeDecryption($PopupEnterCodeRoom/VBoxContainer/TextEdit.text)
+	$ConnectionManager.connectToServer(codeDecryption($PopupEnterCodeRoom/VBoxContainer/TextEdit.text))
 	
 	
 	

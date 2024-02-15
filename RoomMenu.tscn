@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://RoomMenu.gd" type="Script" id=1]
+[ext_resource path="res://ConnectionManager.gd" type="Script" id=2]
 
 [node name="RoomMenu" type="Control"]
 anchor_right = 1.0
@@ -22,7 +23,6 @@ margin_bottom = 412.0
 text = "Enter room"
 
 [node name="PopupEnterCodeRoom" type="Panel" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 239.0
@@ -74,6 +74,9 @@ margin_bottom = 194.0
 text = "Continue"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="ConnectionManager" type="Node2D" parent="."]
+script = ExtResource( 2 )
 
 [connection signal="pressed" from="CreateRoom" to="." method="_on_CreateRoom_pressed"]
 [connection signal="pressed" from="EnterRoom" to="." method="_on_EnterRoom_pressed"]
