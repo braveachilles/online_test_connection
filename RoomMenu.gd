@@ -1,19 +1,35 @@
 extends Control
 
 var ip_splited
+var peer
+var DEFAULT_PORT = 8910
 
 func _ready():
 	pass
 
 func _on_CreateRoom_pressed():
-	
+	creatingRoom()
 	get_tree().change_scene("res://Lobby.tscn")
 	
 func _on_EnterRoom_pressed():
 	$PopupEnterCodeRoom.visible = true
-
+	
+	
 func _on_TextureButton_pressed():
 	$PopupEnterCodeRoom.visible = false
+
+func joinRoom():
+	var ip = codeDecryption($PopupEnterCodeRoom/VBoxContainer/CodeToRoom.text)
+	if not ip.is_valid_ip_address():
+		print("IP address is invalid")
+		return
+
+	peer = NetworkedMultiplayerENet.new()
+	peer.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
+	peer.create_client(ip, DEFAULT_PORT)
+	get_tree().set_network_peer(peer)
+
+	print("Connecting...")
 
 func codeDecryption(codeToDecrypt):
 #	print(str(codeToDecrypt) + " el largo es: " + str(codeToDecrypt.length()))
@@ -64,9 +80,25 @@ func codeDecryption(codeToDecrypt):
 #	print("la ip es: " + ip)
 	return ip
 
+func creatingRoom():
+	peer = NetworkedMultiplayerENet.new()
+	peer.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
+	var err = peer.create_server(DEFAULT_PORT, 1) # Maximum of 1 peer, since it's a 2-player game.
+	if err != OK:
+		# Is another server running?
+		print("Can't host, address in use.")
+		return
+	else:
+			
+
+		get_tree().set_network_peer(peer)
+		
+		print("player connected")
+	# Only show hosting instructions when relevant.
+
 func _on_Continue_pressed():
-	$ConnectionManager.connectToServer(codeDecryption($PopupEnterCodeRoom/VBoxContainer/TextEdit.text))
-	
+	#$ConnectionManager.connectToServer(codeDecryption($PopupEnterCodeRoom/VBoxContainer/TextEdit.text))
+	joinRoom()
 
 	
 	

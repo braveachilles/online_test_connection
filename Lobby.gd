@@ -6,22 +6,26 @@ var chat_list
 var host_player
 var chat_message_enter
 var ip_splited
+var peer
+var DEFAULT_PORT = 8910
 
 
 func _ready():
-	room_number = $RoomNumber
-	player_list = $PlayerList
-	chat_list = $Chat
-	chat_message_enter = $ChatMessageEnter
-#	var peer = NetworkedMultiplayerENet.new()
-#	peer.create_server(8000, 4)
-#	network_peer = peer
-#	Global.player_list.append(peer)
-	$ConnectionManager.createServer()
-	var http = $HTTPRequest
-	http.request("https://api.ipify.org")
-	host_player = "Player 1 (Host)"
-	player_list.add_item(host_player, null, false)
+	connecting_signal()
+	
+#	room_number = $RoomNumber
+#	player_list = $PlayerList
+#	chat_list = $Chat
+#	chat_message_enter = $ChatMessageEnter
+##	var peer = NetworkedMultiplayerENet.new()
+##	peer.create_server(8000, 4)
+##	network_peer = peer
+##	Global.player_list.append(peer)
+#	$ConnectionManager.createServer()
+#	var http = $HTTPRequest
+#	http.request("https://api.ipify.org")
+#	host_player = "Player 1 (Host)"
+#	player_list.add_item(host_player, null, false)
 	
 	
 func codeEncryption():
@@ -57,6 +61,7 @@ func codeEncryption():
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	var ip = body.get_string_from_utf8()
 	print(ip)
+	print(str(ip.length()))
 	ip_splited = ip.split(".")
 	codeEncryption()
 	
@@ -98,4 +103,12 @@ func _on_SendMessage_pressed():
 	chat_list.add_item(chat_message_enter.text)
 	chat_message_enter.text = ""
 
+func retrieveMessage(message):
+	print(message)
 
+func connecting_signal():
+	get_tree().connect("network_peer_connected", self, "player_connected")
+	get_tree().connect("network_peer_disconnected", self, "player_connected")
+	get_tree().connect("connected_to_server", self, "player_connected")
+	get_tree().connect("connection_failed", self, "player_connected")
+	get_tree().connect("server_disconnected", self, "player_connected")
