@@ -22,7 +22,8 @@ func _ready():
 	http.request("https://api.ipify.org")
 	host_player = "Player 1 (Host)"
 	player_list.add_item(host_player, null, false)
-
+	
+	
 func codeEncryption():
 	
 	
@@ -96,3 +97,5 @@ func getRandom():
 func _on_SendMessage_pressed():
 	chat_list.add_item(chat_message_enter.text)
 	chat_message_enter.text = ""
+
+

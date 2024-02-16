@@ -23,6 +23,7 @@ margin_bottom = 412.0
 text = "Enter room"
 
 [node name="PopupEnterCodeRoom" type="Panel" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 239.0
