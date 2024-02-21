@@ -9,10 +9,10 @@ var ip
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().connect("network_peer_connected", self, "player_connected")
-	get_tree().connect("network_peer_disconnected", self, "player_connected")
-	get_tree().connect("connected_to_server", self, "player_connected")
-	get_tree().connect("connection_failed", self, "player_connected")
-	get_tree().connect("server_disconnected", self, "player_connected")
+	get_tree().connect("network_peer_disconnected", self, "player_disconnected")
+	get_tree().connect("connected_to_server", self, "player_connected_to_server")
+	get_tree().connect("connection_failed", self, "connectionFailed")
+	get_tree().connect("server_disconnected", self, "serverDisconnected")
 	
 func connectToServer(ip):
 	#ip = "201.214.181.228"
@@ -50,3 +50,16 @@ func sendMessage():
 	
 func player_connected():
 	print("player connected")
+	
+func player_disconnected():
+	print("player disconnected")
+
+func player_connected_to_server():
+	print("player connected to server")
+
+func connectionFailed():
+	print("connection failed")
+	
+func serverDisconnected():
+	print("server disconnected")
+

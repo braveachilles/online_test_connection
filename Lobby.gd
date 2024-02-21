@@ -13,19 +13,19 @@ var DEFAULT_PORT = 8910
 func _ready():
 	connecting_signal()
 	
-#	room_number = $RoomNumber
-#	player_list = $PlayerList
-#	chat_list = $Chat
-#	chat_message_enter = $ChatMessageEnter
+	room_number = $RoomNumber
+	player_list = $PlayerList
+	chat_list = $Chat
+	chat_message_enter = $ChatMessageEnter
 ##	var peer = NetworkedMultiplayerENet.new()
 ##	peer.create_server(8000, 4)
 ##	network_peer = peer
 ##	Global.player_list.append(peer)
 #	$ConnectionManager.createServer()
-#	var http = $HTTPRequest
-#	http.request("https://api.ipify.org")
-#	host_player = "Player 1 (Host)"
-#	player_list.add_item(host_player, null, false)
+	var http = $HTTPRequest
+	http.request("https://api.ipify.org")
+	host_player = "Player 1 (Host)"
+	player_list.add_item(host_player, null, false)
 	
 	
 func codeEncryption():
@@ -53,15 +53,15 @@ func codeEncryption():
 		#segment_1_of_1 = dictionary_ip_block_1[int(str(ip_segment_1)[0])]
 	
 	#print("la ip es: " + ip)
-	print("value 1:" + str(ip_segment_1) + "value 2:" + str(ip_segment_2) + "value 3:" + str(ip_segment_3) +"value 4:" + str(ip_segment_4))
+#	print("value 1:" + str(ip_segment_1) + "value 2:" + str(ip_segment_2) + "value 3:" + str(ip_segment_3) +"value 4:" + str(ip_segment_4))
 	print(arrayToString(united_segments_list))
 	var roomCode = arrayToString(united_segments_list)
 	room_number.text = roomCode
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	var ip = body.get_string_from_utf8()
-	print(ip)
-	print(str(ip.length()))
+#	print(ip)
+#	print(str(ip.length()))
 	ip_splited = ip.split(".")
 	codeEncryption()
 	
